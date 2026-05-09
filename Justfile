@@ -1,6 +1,6 @@
-export image_name := env("IMAGE_NAME", "image-template") # output image name, usually same as repo name, change as needed
-export repo_organization := env("REPO_ORGANIZATION", "alice-and-bob") # usually same as github username
-export image_desc := env("IMAGE_DESC", "My Customized Bootc Image")
+export image_name := env("IMAGE_NAME", "bazzite-chunkah") # output image name, usually same as repo name, change as needed
+export repo_organization := env("REPO_ORGANIZATION", "renner0e") # usually same as github username
+export image_desc := env("IMAGE_DESC", "Bazzite but cooler")
 export image_keywords := env("IMAGE_KEYWORDS", "bootc,oci,linux")
 export image_logo_url := env("IMAGE_LOGO_URL", "https://avatars.githubusercontent.com/u/120078124?s=200&v=4") # Put your own image here for a fancy profile on https://artifacthub.io/!
 export default_tag := env("DEFAULT_TAG", "latest")
