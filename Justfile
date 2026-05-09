@@ -123,7 +123,7 @@ build $target_image=image_name $tag=default_tag:
     # This actually builds the image!
     PODMAN_BUILD_ARGS=("${BUILD_ARGS[@]}" "${LABELS[@]}" --pull=newer --tag "${target_image}:${tag}" --file Containerfile)
 
-    /home/linuxbrew/.linuxbrew/bin/podman build "${PODMAN_BUILD_ARGS[@]}" .
+    podman build "${PODMAN_BUILD_ARGS[@]}" .
 
 # Split the image for smaller updates (New)!
 rechunk $target_image=image_name $tag=default_tag:
@@ -131,15 +131,15 @@ rechunk $target_image=image_name $tag=default_tag:
 
     set -xeuo pipefail
 
-    export CHUNKAH_CONFIG_STR=$(/home/linuxbrew/.linuxbrew/bin/podman inspect "${target_image}")
-    /home/linuxbrew/.linuxbrew/bin/podman run --rm --mount=type=image,src="${target_image}",target=/chunkah \
+    export CHUNKAH_CONFIG_STR=$(podman inspect "${target_image}")
+    podman run --rm --mount=type=image,src="${target_image}",target=/chunkah \
     -e CHUNKAH_CONFIG_STR quay.io/coreos/chunkah:latest \
     build \
     --max-layers 128 \
     --prune /sysroot/ \
     --prune /ostree \
     --label ostree.commit- --label ostree.final-diffid- \
-    --tag "${target_image}:${tag}" | /home/linuxbrew/.linuxbrew/bin/podman load
+    --tag "${target_image}:${tag}" | podman load
 
 # Split the image for smaller updates (Classical)!
 ostree-rechunk $target_image=image_name $tag=default_tag:
