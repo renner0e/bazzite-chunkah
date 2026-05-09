@@ -52,6 +52,7 @@ jobs:
         run: |
           /home/linuxbrew/.linuxbrew/bin/brew install podman
           echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
+          podman --version
 
       - name: Image Name
         id: image-name
