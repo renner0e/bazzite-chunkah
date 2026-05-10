@@ -135,6 +135,7 @@ rechunk $target_image=image_name $tag=default_tag:
     podman run --rm --mount=type=image,src="${target_image}",target=/chunkah \
     -e CHUNKAH_CONFIG_STR quay.io/coreos/chunkah:latest \
     build \
+    --compressed \
     --max-layers 128 \
     --prune /sysroot/ \
     --prune /ostree \
